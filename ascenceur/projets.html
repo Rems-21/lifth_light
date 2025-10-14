@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="Portfolio des projets Lift and Light - Découvrez nos réalisations en ascenseurs, climatisation, électricité et groupes électrogènes.">
+        <meta name="author" content="Lift and Light">
+
+        <title>Projets - Lift and Light</title>
+
+        <!-- CSS FILES -->        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
+                
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="css/bootstrap-icons.css" rel="stylesheet">
+
+        <link href="css/styles.css" rel="stylesheet">
+    </head>
+    
+    <body>
+
+        <main>
+
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="images/logo.jpg" alt="Lift and Light" height="40" class="me-2">
+                        Lift and Light
+                    </a>
+
+    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Accueil</a>
+                            </li>
+    
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Services
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                                    <li><a class="dropdown-item" href="ascenseurs.html">Ascenseurs</a></li>
+                                    <li><a class="dropdown-item" href="climatisation.html">Climatisation</a></li>
+                                    <li><a class="dropdown-item" href="electricite.html">Électricité</a></li>
+                                    <li><a class="dropdown-item" href="groupes-electrogenes.html">Groupes Électrogènes</a></li>
+                                </ul>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link active" href="projets.html">Projets</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.html">À propos</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.html">Contact</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="section-overlay"></div>
+
+                <div class="container d-flex justify-content-center align-items-center">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h1 class="text-white mb-5 animate-fadeInUp">Nos Projets</h1>
+                            <p class="text-white lead animate-fadeInUp" style="animation-delay: 0.2s;">Découvrez nos réalisations et notre expertise</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-wrap">
+                    <video autoplay="" loop="" muted="" class="custom-video" poster="">
+                        <source src="video/WhatsApp Vidéo 2025-10-13 à 19.08.32_45fd92d5.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la balise vidéo.
+                    </video>
+                </div>
+            </section>
+
+            <!-- Portfolio Filter -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center mb-5">
+                            <h2>Notre Portfolio</h2>
+                            <p class="lead">Des projets variés qui témoignent de notre expertise</p>
+                        </div>
+                    </div>
+
+                    <!-- Filter Buttons -->
+                    <div class="row mb-5">
+                        <div class="col-12 text-center">
+                            <div class="btn-group" role="group" aria-label="Filter buttons">
+                                <button type="button" class="btn btn-outline-primary active" data-filter="all">Tous</button>
+                                <button type="button" class="btn btn-outline-primary" data-filter="ascenseurs">Ascenseurs</button>
+                                <button type="button" class="btn btn-outline-primary" data-filter="climatisation">Climatisation</button>
+                                <button type="button" class="btn btn-outline-primary" data-filter="electricite">Électricité</button>
+                                <button type="button" class="btn btn-outline-primary" data-filter="groupes">Groupes Électrogènes</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio Grid -->
+                    <div class="row" id="portfolio-grid">
+                        <!-- Ascenseurs Projects -->
+                        <div class="col-lg-4 col-md-6 col-12 mb-4 portfolio-item" data-category="ascenseurs">
+                            <div class="card h-100 shadow hover-lift animate-fadeInUp">
+                                <img src="images/ascenceur.jpg" class="card-img-top" style="height: 250px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Rénovation Ascenseur Résidentiel</h5>
+                                    <p class="card-text">Modernisation complète d'un ascenseur dans un immeuble de 8 étages avec mise aux normes et amélioration des performances.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">Paris 15ème</small>
+                                        <span class="badge bg-primary">Ascenseurs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-12 mb-4 portfolio-item" data-category="ascenseurs">
+                            <div class="card h-100 shadow hover-lift animate-fadeInUp" style="animation-delay: 0.2s;">
+                                <img src="images/ascenceur.jpg" class="card-img-top" style="height: 250px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Installation Ascenseur Commercial</h5>
+                                    <p class="card-text">Installation d'un ascenseur de charge dans un centre commercial avec cabine panoramique et technologies avancées.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">La Défense</small>
+                                        <span class="badge bg-primary">Ascenseurs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Climatisation Projects -->
+                        <div class="col-lg-4 col-md-6 col-12 mb-4 portfolio-item" data-category="climatisation">
+                            <div class="card h-100 shadow hover-lift animate-fadeInUp" style="animation-delay: 0.4s;">
+                                <img src="images/climatisation.jpg" class="card-img-top" style="height: 250px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Système Climatisation Bureaux</h5>
+                                    <p class="card-text">Installation d'un système de climatisation centralisé pour un immeuble de bureaux de 2000m² avec gestion intelligente.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">Neuilly-sur-Seine</small>
+                                        <span class="badge bg-success">Climatisation</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-12 mb-4 portfolio-item" data-category="climatisation">
+                            <div class="card h-100 shadow hover-lift animate-fadeInUp" style="animation-delay: 0.6s;">
+                                <img src="images/climatisation.jpg" class="card-img-top" style="height: 250px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Climatisation Résidentielle</h5>
+                                    <p class="card-text">Installation de climatisation réversible dans une villa de 300m² avec pompe à chaleur géothermique.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">Versailles</small>
+                                        <span class="badge bg-success">Climatisation</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Électricité Projects -->
+                        <div class="col-lg-4 col-md-6 col-12 mb-4 portfolio-item" data-category="electricite">
+                            <div class="card h-100 shadow hover-lift animate-fadeInUp" style="animation-delay: 0.8s;">
+                                <img src="images/electricite.jpg" class="card-img-top" style="height: 250px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Rénovation Électrique Complète</h5>
+                                    <p class="card-text">Mise aux normes complète d'une installation électrique dans un bâtiment historique avec préservation du patrimoine.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">Marais, Paris</small>
+                                        <span class="badge bg-warning">Électricité</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-12 mb-4 portfolio-item" data-category="electricite">
+                            <div class="card h-100 shadow hover-lift animate-fadeInUp" style="animation-delay: 1s;">
+                                <img src="images/electricite.jpg" class="card-img-top" style="height: 250px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Tableau Électrique Industriel</h5>
+                                    <p class="card-text">Installation d'un tableau électrique principal pour une usine de production avec système de protection avancé.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">Nanterre</small>
+                                        <span class="badge bg-warning">Électricité</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Groupes Électrogènes Projects -->
+                        <div class="col-lg-4 col-md-6 col-12 mb-4 portfolio-item" data-category="groupes">
+                            <div class="card h-100 shadow hover-lift animate-fadeInUp" style="animation-delay: 1.2s;">
+                                <img src="images/groupe_electrogene.jpg" class="card-img-top" style="height: 250px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Groupe Électrogène Hôpital</h5>
+                                    <p class="card-text">Installation d'un groupe électrogène de secours pour un hôpital avec démarrage automatique et monitoring.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">Hôpital Saint-Antoine</small>
+                                        <span class="badge bg-info">Groupes Électrogènes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-12 mb-4 portfolio-item" data-category="groupes">
+                            <div class="card h-100 shadow hover-lift animate-fadeInUp" style="animation-delay: 1.4s;">
+                                <img src="images/groupe_electrogene.jpg" class="card-img-top" style="height: 250px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Groupe Électrogène Data Center</h5>
+                                    <p class="card-text">Installation de groupes électrogènes redondants pour un centre de données avec système de basculement automatique.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">Data Center Paris</small>
+                                        <span class="badge bg-info">Groupes Électrogènes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="section-padding section-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center mb-5">
+                            <h2>Nos Réalisations en Chiffres</h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-12 mb-4">
+                            <div class="text-center animate-fadeInUp">
+                                <h3 class="text-primary mb-2">500+</h3>
+                                <p class="mb-0">Projets Réalisés</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-12 mb-4">
+                            <div class="text-center animate-fadeInUp" style="animation-delay: 0.2s;">
+                                <h3 class="text-primary mb-2">16+</h3>
+                                <p class="mb-0">Années d'Expérience</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-12 mb-4">
+                            <div class="text-center animate-fadeInUp" style="animation-delay: 0.4s;">
+                                <h3 class="text-primary mb-2">98%</h3>
+                                <p class="mb-0">Clients Satisfaits</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-12 mb-4">
+                            <div class="text-center animate-fadeInUp" style="animation-delay: 0.6s;">
+                                <h3 class="text-primary mb-2">24/7</h3>
+                                <p class="mb-0">Support Technique</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+
+        <footer class="site-footer">
+            <div class="site-footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <h2 class="text-white mb-lg-0">Lift and Light</h2>
+                        </div>
+                        <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
+                            <ul class="social-icon d-flex justify-content-lg-end">
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-facebook"></span>
+                                    </a>
+                                </li>
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-linkedin"></span>
+                                    </a>
+                                </li>
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-instagram"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-12 mb-4 pb-2">
+                        <h5 class="site-footer-title mb-3">Navigation</h5>
+                        <ul class="site-footer-links">
+                            <li class="site-footer-link-item">
+                                <a href="index.html" class="site-footer-link">Accueil</a>
+                            </li>
+                            <li class="site-footer-link-item">
+                                <a href="services.html" class="site-footer-link">Services</a>
+                            </li>
+                            <li class="site-footer-link-item">
+                                <a href="projets.html" class="site-footer-link">Projets</a>
+                            </li>
+                            <li class="site-footer-link-item">
+                                <a href="about.html" class="site-footer-link">À propos</a>
+                            </li>
+                            <li class="site-footer-link-item">
+                                <a href="contact.html" class="site-footer-link">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                        <h5 class="site-footer-title mb-3">Contactez-nous</h5>
+                        <p class="text-white d-flex mb-1">
+                            <a href="tel: 6-96-92-66-78" class="site-footer-link">
+                                6-96-92-66-78
+                            </a>
+                        </p>
+                        <p class="text-white d-flex mb-1">
+                            <a href="tel: 6-75-97-43-02" class="site-footer-link">
+                                6-75-97-43-02
+                            </a>
+                        </p>
+                        <p class="text-white d-flex">
+                            <a href="mailto:info@lift&light.com" class="site-footer-link">
+                                info@lift&light.com
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-11 mb-4 mb-lg-0 mb-md-0">
+                        <h5 class="site-footer-title mb-3">Localisation</h5>
+                        <p class="text-white d-flex mt-3 mb-2">
+                        Siège social devant Total Essos, Yaoundé - Service sur toute la région</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-12 mt-5">
+                            <p class="copyright-text">Copyright © 2025 Lift and Light</p>
+                        </div>
+                        <div class="col-lg-8 col-12 mt-lg-5">
+                            <ul class="site-footer-links">
+                                <li class="site-footer-link-item">
+                                    <a href="#" class="site-footer-link">Mentions Légales</a>
+                                </li>
+                                <li class="site-footer-link-item">
+                                    <a href="#" class="site-footer-link">Politique de Confidentialité</a>
+                                </li>
+                                <li class="site-footer-link-item">
+                                    <a href="#" class="site-footer-link">CGV</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- JAVASCRIPT FILES -->
+        <script src="js/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.sticky.js"></script>
+        <script src="js/click-scroll.js"></script>
+        <script src="js/custom.js"></script>
+
+        <!-- Bootstrap 5 handles dropdowns automatically -->
+
+        <!-- Portfolio Filter Script -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const filterButtons = document.querySelectorAll('[data-filter]');
+                const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const filter = this.getAttribute('data-filter');
+                        
+                        // Update active button
+                        filterButtons.forEach(btn => btn.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        // Filter items
+                        portfolioItems.forEach(item => {
+                            if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                                item.style.display = 'block';
+                                item.classList.add('animate-fadeInUp');
+                            } else {
+                                item.style.display = 'none';
+                                item.classList.remove('animate-fadeInUp');
+                            }
+                        });
+                    });
+                });
+            });
+        </script>
+
+    </body>
+</html>
