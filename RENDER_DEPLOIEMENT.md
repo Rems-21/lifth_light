@@ -41,14 +41,6 @@ Render configure automatiquement via `render.yaml` :
 - ✅ `DJANGO_SETTINGS_MODULE=liftandlight.settings_prod`
 - ✅ `SECRET_KEY` (généré automatiquement)
 - ✅ `DATABASE_URL` (créé automatiquement avec la base de données)
-- ✅ `ADMIN_USERNAME=admin` (nom d'utilisateur admin)
-- ✅ `ADMIN_EMAIL=admin@lifthlight.com` (email admin)
-- ✅ `ADMIN_PASSWORD` (généré automatiquement - **IMPORTANT** : notez-le !)
-
-**⚠️ IMPORTANT** : Le mot de passe admin est généré automatiquement. Vous pouvez :
-- Le voir dans les logs après le premier déploiement
-- Le modifier dans Settings → Environment → `ADMIN_PASSWORD`
-- Ou le définir manuellement avec un mot de passe de votre choix
 
 **Vous pouvez aussi ajouter manuellement** (dans Settings → Environment) :
 - `DEBUG=False` (pour la production)
@@ -72,30 +64,26 @@ Render configure automatiquement via `render.yaml` :
    - ✅ Exécuter les migrations (automatiquement)
    - ✅ Démarrer votre site
 
-### 7. Superutilisateur créé automatiquement ! ✅
+### 7. Créer le superutilisateur (AUTOMATIQUE)
 
-**Bonne nouvelle** : Le superutilisateur est créé automatiquement au premier démarrage grâce aux variables d'environnement !
+**Option 1 : Via Variables d'Environnement (RECOMMANDÉ)** ✅
 
-**Variables configurées** :
-- `ADMIN_USERNAME=admin`
-- `ADMIN_EMAIL=admin@lifthlight.com`
-- `ADMIN_PASSWORD` (généré automatiquement)
+1. Dans le dashboard Render, allez sur votre service → **"Environment"**
+2. Ajoutez ces variables :
+   - `ADMIN_USERNAME` = `admin`
+   - `ADMIN_EMAIL` = `admin@lifthlight.com`
+   - `ADMIN_PASSWORD` = `VotreMotDePasseSecurise`
+3. **Save Changes** - Render redéploiera automatiquement
+4. Le superutilisateur sera créé automatiquement ! 🎉
 
-**Pour trouver le mot de passe** :
-1. Allez dans **Settings → Environment** de votre service Render
-2. Cherchez `ADMIN_PASSWORD` - le mot de passe y est affiché
-3. Ou consultez les **logs** après le premier déploiement
+**Option 2 : Via le Shell Render**
 
-**Pour changer le mot de passe** :
-1. Allez dans **Settings → Environment**
-2. Modifiez `ADMIN_PASSWORD` avec votre mot de passe
-3. Redéployez le service
+Si vous préférez créer manuellement :
+```bash
+python manage.py createsuperuser
+```
 
-**Accédez à l'admin** : `https://votre-app.onrender.com/admin/`
-- Username : `admin` (ou celui défini dans `ADMIN_USERNAME`)
-- Password : Le mot de passe dans `ADMIN_PASSWORD`
-
-**Note** : Les migrations s'exécutent automatiquement lors du déploiement.
+**Voir** `ADMIN_ENV_VARIABLES.md` pour plus de détails.
 
 ---
 

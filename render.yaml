@@ -11,12 +11,14 @@ services:
         generateValue: true
       - key: PYTHON_VERSION
         value: 3.10.9
-      - key: ADMIN_USERNAME
-        value: admin
-      - key: ADMIN_EMAIL
-        value: admin@lifthlight.com
-      - key: ADMIN_PASSWORD
-        generateValue: true
+      # Variables pour créer automatiquement un superutilisateur
+      # Définissez ces variables dans Render Dashboard → Environment
+      # - key: ADMIN_USERNAME
+      #   value: admin
+      # - key: ADMIN_EMAIL
+      #   value: admin@example.com
+      # - key: ADMIN_PASSWORD
+      #   value: votre-mot-de-passe-securise
     database:
       name: liftandlight-db
       plan: free
