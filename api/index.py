@@ -11,24 +11,41 @@ from io import BytesIO
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 
+# Log startup
+print(f"Starting handler, BASE_DIR: {BASE_DIR}", file=sys.stderr)
+print(f"Python path: {sys.path}", file=sys.stderr)
+
 # Set Django settings module - use vercel settings if available
-if os.path.exists(os.path.join(BASE_DIR, 'liftandlight', 'settings_vercel.py')):
+settings_file = os.path.join(BASE_DIR, 'liftandlight', 'settings_vercel.py')
+if os.path.exists(settings_file):
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'liftandlight.settings_vercel')
+    print("Using settings_vercel", file=sys.stderr)
 else:
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'liftandlight.settings')
+    print("Using default settings", file=sys.stderr)
 
 # Try to import and setup Django
+django_ready = False
+application = None
+error_message = None
+
 try:
+    print("Importing django...", file=sys.stderr)
     import django
+    print("Django imported, calling setup...", file=sys.stderr)
     django.setup()
+    print("Django setup complete", file=sys.stderr)
     
     # Import WSGI application
+    print("Importing WSGI application...", file=sys.stderr)
     from liftandlight.wsgi import application
+    print("WSGI application imported", file=sys.stderr)
     django_ready = True
 except Exception as e:
-    print(f"Django setup error: {e}", file=sys.stderr)
+    error_message = str(e)
     import traceback
-    traceback.print_exc()
+    print(f"Django setup error: {error_message}", file=sys.stderr)
+    print(traceback.format_exc(), file=sys.stderr)
     django_ready = False
     application = None
 
@@ -36,14 +53,22 @@ def handler(request):
     """
     Vercel serverless function handler for Django WSGI
     """
+    # If Django failed to initialize, return error immediately
     if not django_ready:
         return {
             'statusCode': 500,
-            'headers': {'content-type': 'text/plain; charset=utf-8'},
-            'body': 'Django initialization failed. Check server logs.'
+            'headers': {'content-type': 'text/html; charset=utf-8'},
+            'body': f'''<html><body>
+                <h1>Django Initialization Error</h1>
+                <p>Django failed to initialize. Error: {error_message}</p>
+                <p>Check server logs for more details.</p>
+            </body></html>'''
         }
     
     try:
+        # Log request info
+        print(f"Request received: {type(request)}", file=sys.stderr)
+        
         # Vercel Python Request object
         # Handle different possible request formats
         method = 'GET'
@@ -68,6 +93,8 @@ def handler(request):
             parsed = urlparse(request.url)
             path = parsed.path
         
+        print(f"Method: {method}, Path: {path}", file=sys.stderr)
+        
         # Get headers
         if hasattr(request, 'headers'):
             try:
@@ -75,8 +102,8 @@ def handler(request):
                     headers = request.headers
                 else:
                     headers = dict(request.headers)
-            except:
-                pass
+            except Exception as e:
+                print(f"Error reading headers: {e}", file=sys.stderr)
         
         # Get body
         if hasattr(request, 'body'):
@@ -142,7 +169,9 @@ def handler(request):
             response_headers_list = headers_list
         
         # Call WSGI application
+        print("Calling WSGI application...", file=sys.stderr)
         result = application(environ, start_response)
+        print(f"WSGI application returned, status: {response_status}", file=sys.stderr)
         
         # Collect response body
         body_parts = []
@@ -162,6 +191,8 @@ def handler(request):
         for header, value in response_headers_list:
             response_headers_dict[str(header).lower()] = str(value)
         
+        print(f"Returning response, status: {response_status}, body length: {len(body_bytes)}", file=sys.stderr)
+        
         # Return Vercel response format
         return {
             'statusCode': response_status,
@@ -176,6 +207,9 @@ def handler(request):
         print(error_msg, file=sys.stderr)
         return {
             'statusCode': 500,
-            'headers': {'content-type': 'text/plain; charset=utf-8'},
-            'body': error_msg
+            'headers': {'content-type': 'text/html; charset=utf-8'},
+            'body': f'''<html><body>
+                <h1>Handler Error</h1>
+                <pre>{error_msg}</pre>
+            </body></html>'''
         }
