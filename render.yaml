@@ -3,7 +3,7 @@ services:
     name: liftandlight
     env: python
     buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
-    startCommand: gunicorn liftandlight.wsgi
+    startCommand: python -m gunicorn liftandlight.wsgi --bind 0.0.0.0:$PORT
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: liftandlight.settings

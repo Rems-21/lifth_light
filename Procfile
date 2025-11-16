@@ -1,2 +1,2 @@
-web: gunicorn liftandlight.wsgi --log-file -
+web: python -m gunicorn liftandlight.wsgi --bind 0.0.0.0:$PORT --log-file -
 

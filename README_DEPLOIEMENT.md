@@ -33,11 +33,13 @@ python -c "from django.core.management.utils import get_random_secret_key; print
 ```
 
 **Migration de la base de données :**
-Après le premier déploiement, dans le terminal Railway :
+Railway exécute automatiquement les migrations. Si nécessaire, dans le terminal Railway :
 ```bash
 python manage.py migrate
 python manage.py createsuperuser
 ```
+
+**Note :** Si vous voyez l'erreur `gunicorn: command not found`, assurez-vous que `gunicorn>=21.2.0` est dans `requirements.txt`. Les fichiers de configuration utilisent `python -m gunicorn` pour garantir que gunicorn est trouvé.
 
 ---
 
