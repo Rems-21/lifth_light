@@ -13,6 +13,9 @@ python manage.py collectstatic --noinput || true
 # Exécuter les migrations
 python manage.py migrate --noinput || true
 
+# Créer le superutilisateur automatiquement (si variables d'environnement définies)
+python create_admin.py || true
+
 # Démarrer Gunicorn
 exec python -m gunicorn liftandlight.wsgi --bind 0.0.0.0:${PORT:-8000} --workers 2 --timeout 120
 
