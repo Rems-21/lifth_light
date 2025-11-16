@@ -11,8 +11,11 @@ from io import BytesIO
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 
-# Set Django settings module
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'liftandlight.settings')
+# Set Django settings module - use vercel settings if available
+if os.path.exists(os.path.join(BASE_DIR, 'liftandlight', 'settings_vercel.py')):
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'liftandlight.settings_vercel')
+else:
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'liftandlight.settings')
 
 # Try to import and setup Django
 try:
