@@ -9,6 +9,10 @@
 
         <title>Contact - Lift and Light</title>
 
+        <!-- Favicon -->
+        <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+        <link rel="shortcut icon" type="image/jpeg" href="images/logo.jpg">
+
         <!-- CSS FILES -->        
         <link rel="preconnect" href="https://fonts.googleapis.com">
         
@@ -21,59 +25,14 @@
         <link href="css/bootstrap-icons.css" rel="stylesheet">
 
         <link href="css/styles.css" rel="stylesheet">
+        
+        <!-- Preload critical resources -->
+        <link rel="preload" href="images/logo.jpg" as="image">
     </head>
     
     <body>
 
         <main>
-
-
-            <nav class="navbar navbar-expand-lg">
-                <div class="container">
-                    <a class="navbar-brand" href="index.html">
-                        <img src="images/logo.jpg" alt="Lift and Light" height="40" class="me-2">
-                        Lift and Light
-                    </a>
-
-    
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-    
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.html">Accueil</a>
-                            </li>
-    
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Services
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-                                    <li><a class="dropdown-item" href="ascenseurs.html">Ascenseurs</a></li>
-                                    <li><a class="dropdown-item" href="climatisation.html">Climatisation</a></li>
-                                    <li><a class="dropdown-item" href="electricite.html">Électricité</a></li>
-                                    <li><a class="dropdown-item" href="groupes-electrogenes.html">Groupes Électrogènes</a></li>
-                                </ul>
-                            </li>
-    
-                            <li class="nav-item">
-                                <a class="nav-link" href="projets.html">Projets</a>
-                            </li>
-    
-                            <li class="nav-item">
-                                <a class="nav-link" href="about.html">À propos</a>
-                            </li>
-    
-                            <li class="nav-item">
-                                <a class="nav-link active" href="contact.html">Contact</a>
-                            </li>
-                        </ul>
-
-                    </div>
-                </div>
-            </nav>
 
             <!-- Hero Section -->
             <section class="hero-section">
@@ -155,18 +114,6 @@
                     <div class="row">
                         <div class="col-lg-8 col-12 mx-auto">
                             <h2 class="text-center mb-4">Demandez votre devis gratuit</h2>
-
-                            <nav class="d-flex justify-content-center">
-                                <div class="nav nav-tabs align-items-baseline justify-content-center" id="nav-tab" role="tablist">
-                                    <button class="nav-link active" id="nav-ContactForm-tab" data-bs-toggle="tab" data-bs-target="#nav-ContactForm" type="button" role="tab" aria-controls="nav-ContactForm" aria-selected="false">
-                                        <h5>Formulaire de Contact</h5>
-                                    </button>
-
-                                    <button class="nav-link" id="nav-ContactMap-tab" data-bs-toggle="tab" data-bs-target="#nav-ContactMap" type="button" role="tab" aria-controls="nav-ContactMap" aria-selected="false">
-                                        <h5>Localisation</h5>
-                                    </button>
-                                </div>
-                            </nav>
 
                             <div class="tab-content shadow-lg mt-5" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-ContactForm" role="tabpanel" aria-labelledby="nav-ContactForm-tab">
@@ -367,108 +314,6 @@
                 </div>
             </section>
         </main>
-
-
-        <footer class="site-footer">
-            <div class="site-footer-top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 col-12">
-                            <h2 class="text-white mb-lg-0">Lift and Light</h2>
-                        </div>
-                        <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
-                            <ul class="social-icon d-flex justify-content-lg-end">
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link">
-                                        <span class="bi-facebook"></span>
-                                    </a>
-                                </li>
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link">
-                                        <span class="bi-linkedin"></span>
-                                    </a>
-                                </li>
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link">
-                                        <span class="bi-instagram"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-12 mb-4 pb-2">
-                        <h5 class="site-footer-title mb-3">Navigation</h5>
-                        <ul class="site-footer-links">
-                            <li class="site-footer-link-item">
-                                <a href="index.html" class="site-footer-link">Accueil</a>
-                            </li>
-                            <li class="site-footer-link-item">
-                                <a href="services.html" class="site-footer-link">Services</a>
-                            </li>
-                            <li class="site-footer-link-item">
-                                <a href="about.html" class="site-footer-link">À propos</a>
-                            </li>
-                            <li class="site-footer-link-item">
-                                <a href="contact.html" class="site-footer-link">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
-                        <h5 class="site-footer-title mb-3">Contactez-nous</h5>
-                        <p class="text-white d-flex mb-1">
-                            <a href="tel: 6-96-92-66-78" class="site-footer-link">
-                                6-96-92-66-78
-                            </a>
-                        </p>
-                        <p class="text-white d-flex mb-1">
-                            <a href="tel: 6-75-97-43-02" class="site-footer-link">
-                                6-75-97-43-02
-                            </a>
-                        </p>
-                        <p class="text-white d-flex">
-                            <a href="mailto:info@lift&light.com" class="site-footer-link">
-                                info@lift&light.com
-                            </a>
-                        </p>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-11 mb-4 mb-lg-0 mb-md-0">
-                        <h5 class="site-footer-title mb-3">Localisation</h5>
-                        <p class="text-white d-flex mt-3 mb-2">
-                        Siège social devant Total Essos, Yaoundé - Service sur toute la région</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="site-footer-bottom">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-3 col-12 mt-5">
-                            <p class="copyright-text">Copyright © 2025 Lift and Light</p>
-                        </div>
-                        <div class="col-lg-8 col-12 mt-lg-5">
-                            <ul class="site-footer-links">
-                                <li class="site-footer-link-item">
-                                    <a href="#" class="site-footer-link">Mentions Légales</a>
-                                </li>
-                                <li class="site-footer-link-item">
-                                    <a href="#" class="site-footer-link">Politique de Confidentialité</a>
-                                </li>
-                                <li class="site-footer-link-item">
-                                    <a href="#" class="site-footer-link">CGV</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
 
         <!-- JAVASCRIPT FILES -->
         <script src="js/jquery.min.js"></script>

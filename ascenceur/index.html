@@ -9,6 +9,10 @@
 
         <title>Lift and Light - Solutions Électriques et Ascenseurs</title>
 
+        <!-- Favicon -->
+        <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+        <link rel="shortcut icon" type="image/jpeg" href="images/logo.jpg">
+
         <!-- CSS FILES -->        
         <link rel="preconnect" href="https://fonts.googleapis.com">
         
@@ -22,62 +26,22 @@
 
         <link href="css/styles.css" rel="stylesheet">
         
+        <!-- Preload critical resources -->
+        <link rel="preload" href="images/logo.jpg" as="image">
+        <link rel="preload" href="video/acceuil.mp4" as="video" type="video/mp4">
+        <link rel="preload" href="images/directeur.jpg" as="image">
+        <link rel="preload" href="images/ascenceur.jpg" as="image">
+        <link rel="preload" href="images/groupe_electrogene.jpg" as="image">
+        
+        <!-- DNS prefetch for external resources -->
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="dns-prefetch" href="//fonts.gstatic.com">
+        
     </head>
     
     <body>
 
         <main>
-
-
-
-            <nav class="navbar navbar-expand-lg">
-                <div class="container">
-                    <a class="navbar-brand" href="index.html">
-                        <img src="images/logo.jpg" alt="Lift and Light" height="40" class="me-2">
-                        Lift and Light
-                    </a>
-
-    
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-    
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_1">Accueil</a>
-                            </li>
-    
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Services
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-                                    <li><a class="dropdown-item" href="ascenseurs.html">Ascenseurs</a></li>
-                                    <li><a class="dropdown-item" href="climatisation.html">Climatisation</a></li>
-                                    <li><a class="dropdown-item" href="electricite.html">Électricité</a></li>
-                                    <li><a class="dropdown-item" href="groupes-electrogenes.html">Groupes Électrogènes</a></li>
-                                </ul>
-                            </li>
-    
-                            <li class="nav-item">
-                                <a class="nav-link" href="projets.html">Projets</a>
-                            </li>
-    
-                            <li class="nav-item">
-                                <a class="nav-link" href="about.html">À propos</a>
-                            </li>
-    
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_6">Contact</a>
-                            </li>
-                        </ul>
-
-                    </div>
-                </div>
-            </nav>
-            
-
             <section class="hero-section" id="section_1">
                 <div class="section-overlay"></div>
 
@@ -135,9 +99,8 @@
                 </div>
 
                 <div class="video-wrap">
-                    <video autoplay="" loop="" muted="" class="custom-video" poster="">
-                        <source src="video/WhatsApp Vidéo 2025-10-13 à 19.07.52_3ea46ee3.mp4" type="video/mp4">
-
+                    <video autoplay="" loop="" muted="" playsinline="" class="custom-video" poster="images/ascenceur.jpg" preload="metadata">
+                        <source src="video/acceuil.mp4" type="video/mp4">
                         Votre navigateur ne supporte pas la balise vidéo.
                     </video>
                 </div>
@@ -166,7 +129,7 @@
 
                         <div class="col-lg-6 col-12">
                             <div class="about-text-wrap">
-                                <img src="images/directeur.jpg" class="about-image img-fluid">
+                                <img src="images/directeur.jpg" class="about-image img-fluid" loading="lazy" alt="Directeur Lift and Light">
 
                                 <div class="about-text-info d-flex">
                                     <div class="d-flex">
@@ -198,7 +161,7 @@
                         <div class="col-lg-6 col-md-6 col-12 mb-4">
                             <div class="artists-thumb hover-lift animate-fadeInLeft">
                                 <div class="artists-image-wrap">
-                                    <img src="images/ascenceur.jpg" class="artists-image img-fluid">
+                                    <img src="images/ascenceur.jpg" class="artists-image img-fluid" loading="lazy" alt="Service Ascenseurs">
                                 </div>
 
                                 <div class="artists-hover">
@@ -230,7 +193,7 @@
                         <div class="col-lg-6 col-md-6 col-12 mb-4">
                             <div class="artists-thumb hover-lift animate-fadeInRight" style="animation-delay: 0.2s;">
                                 <div class="artists-image-wrap">
-                                    <img src="images/climatisation.jpg" class="artists-image img-fluid">
+                                    <img src="images/climatisation.jpg" class="artists-image img-fluid" loading="lazy" alt="Service Climatisation">
                                 </div>
 
                                 <div class="artists-hover">
@@ -262,7 +225,7 @@
                         <div class="col-lg-6 col-md-6 col-12 mb-4">
                             <div class="artists-thumb hover-lift animate-fadeInLeft" style="animation-delay: 0.4s;">
                                 <div class="artists-image-wrap">
-                                    <img src="images/electricite.jpg" class="artists-image img-fluid">
+                                    <img src="images/electricite.jpg" class="artists-image img-fluid" loading="lazy" alt="Service Électricité">
                                 </div>
 
                                 <div class="artists-hover">
@@ -294,7 +257,7 @@
                         <div class="col-lg-6 col-md-6 col-12 mb-4">
                             <div class="artists-thumb hover-lift animate-fadeInRight" style="animation-delay: 0.6s;">
                                 <div class="artists-image-wrap">
-                                    <img src="images/groupe_electrogene.jpg" class="artists-image img-fluid">
+                                    <img src="images/groupe_electrogene.jpg" class="artists-image img-fluid" loading="lazy" alt="Service Groupes Électrogènes">
                                 </div>
 
                                 <div class="artists-hover">
@@ -497,7 +460,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <img src="images/ascenceur1.jpg" class="img-fluid rounded" alt="Installation d'ascenseur">
+                                    <img src="images/ascenceur1.jpg" class="img-fluid rounded" loading="lazy" alt="Installation d'ascenseur">
                                 </div>
 
                                 <ul class="pricing-list mt-3">
@@ -528,7 +491,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <img src="images/ascenceur2.jpg" class="img-fluid rounded" alt="Maintenance d'ascenseur">
+                                    <img src="images/ascenceur2.jpg" class="img-fluid rounded" loading="lazy" alt="Maintenance d'ascenseur">
                                 </div>
 
                                 <ul class="pricing-list mt-3">
@@ -610,144 +573,6 @@
             </section>
         </main>
 
-
-        <footer class="site-footer">
-            <div class="site-footer-top">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-6 col-12">
-                            <h2 class="text-white mb-lg-0">Lift and Light</h2>
-                        </div>
-
-                        <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
-                            <ul class="social-icon d-flex justify-content-lg-end">
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link">
-                                        <span class="bi-facebook"></span>
-                                    </a>
-                                </li>
-    
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link">
-                                        <span class="bi-linkedin"></span>
-                                    </a>
-                                </li>
-    
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link">
-                                        <span class="bi-instagram"></span>
-                                    </a>
-                                </li>
-
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link">
-                                        <span class="bi-youtube"></span>
-                                    </a>
-                                </li>
-
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link">
-                                        <span class="bi-telephone"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-6 col-12 mb-4 pb-2">
-                        <h5 class="site-footer-title mb-3">Navigation</h5>
-
-                        <ul class="site-footer-links">
-                            <li class="site-footer-link-item">
-                                <a href="index.html" class="site-footer-link">Accueil</a>
-                            </li>
-
-                            <li class="site-footer-link-item">
-                                <a href="services.html" class="site-footer-link">Services</a>
-                            </li>
-
-                            <li class="site-footer-link-item">
-                                <a href="projets.html" class="site-footer-link">Projets</a>
-                            </li>
-
-                            <li class="site-footer-link-item">
-                                <a href="about.html" class="site-footer-link">À propos</a>
-                            </li>
-
-                            <li class="site-footer-link-item">
-                                <a href="contact.html" class="site-footer-link">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
-                        <h5 class="site-footer-title mb-3">Contactez-nous</h5>
-
-                        <p class="text-white d-flex mb-1">
-                            <a href="tel: 6-96-92-66-78" class="site-footer-link">
-                                6-96-92-66-78
-                            </a>
-                        </p>
-                        <p class="text-white d-flex mb-1">
-                            <a href="tel: 6-75-97-43-02" class="site-footer-link">
-                                6-75-97-43-02
-                            </a>
-                        </p>
-                        <p class="text-white d-flex">
-                            <a href="mailto:info@lift&light.com" class="site-footer-link">
-                                info@lift&light.com
-                            </a>
-                        </p>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-11 mb-4 mb-lg-0 mb-md-0">
-                        <h5 class="site-footer-title mb-3">Localisation</h5>
-
-                        <p class="text-white d-flex mt-3 mb-2">
-                        Siège social devant Total Essos, Yaoundé - Service sur toute la région</p>
-
-                        <a class="link-fx-1 color-contrast-higher mt-3" href="#">
-                            <span>Nous localiser</span>
-                            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="15.5"></circle><line x1="10" y1="18" x2="16" y2="12"></line><line x1="16" y1="12" x2="22" y2="18"></line></g></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="site-footer-bottom">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-3 col-12 mt-5">
-                            <p class="copyright-text">Copyright © 2025 Lift and Light</p>
-                        </div>
-
-                        <div class="col-lg-8 col-12 mt-lg-5">
-                            <ul class="site-footer-links">
-                                <li class="site-footer-link-item">
-                                    <a href="#" class="site-footer-link">Mentions Légales</a>
-                                </li>
-
-                                <li class="site-footer-link-item">
-                                    <a href="#" class="site-footer-link">Politique de Confidentialité</a>
-                                </li>
-
-                                <li class="site-footer-link-item">
-                                    <a href="#" class="site-footer-link">CGV</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
         <!-- JAVASCRIPT FILES -->
         <script src="js/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
@@ -756,6 +581,7 @@
         <script src="js/click-scroll.js"></script>
         <script src="js/custom.js"></script>
         <script src="js/navbar-scroll.js"></script>
+        <script src="optimize-media.js"></script>
 
         <!-- Bootstrap 5 handles dropdowns automatically -->
 

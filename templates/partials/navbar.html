@@ -1,0 +1,50 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="{% static 'images/logo.jpg' %}" alt="Lift and Light" height="40" class="me-2" loading="eager">
+            Lift and Light
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'accueil' %}active{% endif %}" href="{% url 'projets:accueil' %}">Accueil</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Services
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                        <li><a class="dropdown-item" href="/ascenceur/ascenseurs.html">Ascenseurs</a></li>
+                        <li><a class="dropdown-item" href="/ascenceur/climatisation.html">Climatisation</a></li>
+                        <li><a class="dropdown-item" href="/ascenceur/electricite.html">Électricité</a></li>
+                        <li><a class="dropdown-item" href="/ascenceur/groupes-electrogenes.html">Groupes Électrogènes</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'liste_projets' or request.resolver_match.url_name == 'projet_detail' %}active{% endif %}" href="{% url 'projets:liste_projets' %}">Projets</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/ascenceur/about.html">À propos</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/ascenceur/contact.html">Contact</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.app_name == 'blog' %}active{% endif %}" href="{% url 'blog:liste_articles' %}">Blog</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+

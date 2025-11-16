@@ -1,0 +1,457 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ article.titre }} | Blog - Lift and Light{% endblock %}
+{% block meta_description %}{{ article.resume }}{% endblock %}
+
+{% block extra_head %}
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:title" content="{{ article.titre }} | Lift and Light">
+<meta property="og:description" content="{{ article.resume }}">
+{% if article.image_principale %}
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ article.image_principale.url }}">
+{% else %}
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo.jpg' %}">
+{% endif %}
+<meta property="article:published_time" content="{{ article.date_publication|date:'c' }}">
+<meta property="article:modified_time" content="{{ article.date_modification|date:'c' }}">
+<meta property="article:author" content="{{ article.auteur }}">
+{% for categorie in article.categories.all %}
+<meta property="article:tag" content="{{ categorie.nom }}">
+{% endfor %}
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="{{ request.build_absolute_uri }}">
+<meta name="twitter:title" content="{{ article.titre }}">
+<meta name="twitter:description" content="{{ article.resume }}">
+{% if article.image_principale %}
+<meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ article.image_principale.url }}">
+{% else %}
+<meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo.jpg' %}">
+{% endif %}
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ article.titre|escapejs }}",
+  "description": "{{ article.resume|escapejs }}",
+  "image": "{% if article.image_principale %}{{ request.scheme }}://{{ request.get_host }}{{ article.image_principale.url }}{% else %}{% static 'images/logo.jpg' %}{% endif %}",
+  "datePublished": "{{ article.date_publication|date:'c' }}",
+  "dateModified": "{{ article.date_modification|date:'c' }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ article.auteur|escapejs }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Lift and Light",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo.jpg' %}"
+    }
+  }
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="blog-article-hero-section">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="row">
+            <div class="col-12 text-center">
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb blog-breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="{% url 'projets:accueil' %}">Accueil</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Blog</li>
+                    </ol>
+                </nav>
+                <h1 class="blog-article-title animate-fadeInUp" itemprop="headline">{{ article.titre }}</h1>
+                <div class="blog-article-meta animate-fadeInUp" style="animation-delay: 0.2s;" itemscope itemtype="https://schema.org/Article">
+                    <time datetime="{{ article.date_publication|date:'c' }}" itemprop="datePublished" class="me-3">
+                        <i class="bi-calendar3 me-2"></i>{{ article.date_publication|date:"d F Y" }}
+                    </time>
+                    <span class="mx-3">|</span>
+                    <span itemprop="author" itemscope itemtype="https://schema.org/Person" class="me-3">
+                        <i class="bi-person me-2"></i><span itemprop="name">{{ article.auteur }}</span>
+                    </span>
+                    <span class="mx-3">|</span>
+                    <span class="me-3">
+                        <i class="bi-eye me-2"></i>{{ article.vue }} vues
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.blog-article-hero-section {
+    position: relative;
+    min-height: 400px;
+    padding: 140px 0 100px;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
+    overflow: hidden;
+    margin-top: 0;
+}
+
+.blog-article-hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.blog-breadcrumb {
+    background: rgba(255,255,255,0.95) !important;
+    padding: 12px 24px !important;
+    border-radius: 50px !important;
+    display: inline-flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    margin-bottom: 1.5rem !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
+    list-style: none !important;
+    width: auto !important;
+    max-width: 100%;
+}
+
+.blog-breadcrumb .breadcrumb-item {
+    color: var(--primary-color) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    white-space: nowrap !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+}
+
+.blog-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+    content: "/" !important;
+    color: var(--primary-color) !important;
+    padding: 0 12px !important;
+    font-weight: 500 !important;
+    display: inline-block !important;
+    float: none !important;
+}
+
+.blog-breadcrumb .breadcrumb-item a {
+    color: var(--primary-color) !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    transition: color 0.3s ease;
+    display: inline-block !important;
+}
+
+.blog-breadcrumb .breadcrumb-item a:hover {
+    color: var(--custom-btn-bg-hover-color) !important;
+    text-decoration: underline !important;
+}
+
+.blog-breadcrumb .breadcrumb-item.active {
+    color: var(--dark-color) !important;
+    font-weight: 600 !important;
+}
+
+.blog-article-title {
+    color: var(--dark-color);
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    display: block;
+}
+
+.blog-article-meta {
+    color: var(--p-color);
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+/* Responsive improvements for long text links */
+.card-body h6 a,
+.card-body h6 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+    max-height: 2.8em;
+}
+
+.social-share .btn {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.list-group-item-action {
+    overflow: hidden;
+}
+
+.list-group-item-action h6 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+    max-height: 2.8em;
+    margin-bottom: 0.25rem;
+}
+
+@media screen and (max-width: 768px) {
+    .blog-article-hero-section {
+        padding: 120px 0 60px;
+        min-height: 300px;
+    }
+    
+    .blog-article-title {
+        font-size: 2rem;
+        word-wrap: break-word;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.3;
+        display: block;
+    }
+    
+    .blog-article-meta {
+        font-size: 0.9rem;
+    }
+    
+    .blog-article-meta .mx-3 {
+        display: none;
+    }
+    
+    .card-body h6 {
+        font-size: 0.95rem;
+        -webkit-line-clamp: 2;
+        max-height: 2.8em;
+    }
+    
+    .card-body h6 a {
+        -webkit-line-clamp: 2;
+        max-height: 2.8em;
+    }
+    
+    .social-share {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .social-share .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .list-group-item-action {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .list-group-item-action h6 {
+        -webkit-line-clamp: 2;
+        max-height: 2.8em;
+    }
+    
+    .col-md-6 {
+        margin-bottom: 1rem;
+    }
+    
+    .col-md-4 {
+        margin-bottom: 1rem;
+    }
+}
+</style>
+
+<!-- Article Content -->
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <!-- Main Content -->
+            <div class="col-lg-8 col-12">
+                <article class="card shadow-sm mb-4" itemscope itemtype="https://schema.org/BlogPosting">
+                    <div class="card-body">
+                        <!-- Categories -->
+                        {% if article.categories.all %}
+                        <div class="mb-3" itemprop="keywords">
+                            {% for categorie in article.categories.all %}
+                            <a href="{% url 'blog:liste_articles_categorie' categorie=categorie.slug %}" class="badge bg-primary me-1">
+                                {{ categorie.nom }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        <!-- Article Image -->
+                        {% if article.image_principale %}
+                        <img src="{{ article.image_principale.url }}" class="img-fluid rounded mb-4" alt="{{ article.titre }}" itemprop="image">
+                        {% endif %}
+
+                        <!-- Article Content -->
+                        <div class="article-content" itemprop="articleBody">
+                            {% autoescape off %}
+                            {{ article.contenu|linebreaks }}
+                            {% endautoescape %}
+                        </div>
+
+                        <!-- Share Buttons -->
+                        <div class="mt-4 pt-4 border-top">
+                            <h5>Partager cet article :</h5>
+                            <div class="social-share">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" 
+                                   target="_blank" class="btn btn-outline-primary me-2">
+                                    <i class="bi-facebook me-1"></i>Facebook
+                                </a>
+                                <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ article.titre }}" 
+                                   target="_blank" class="btn btn-outline-info me-2">
+                                    <i class="bi-twitter me-1"></i>Twitter
+                                </a>
+                                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}" 
+                                   target="_blank" class="btn btn-outline-primary">
+                                    <i class="bi-linkedin me-1"></i>LinkedIn
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Navigation -->
+                <div class="row mb-4">
+                    {% if article_precedent %}
+                    <div class="col-md-6">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <small class="text-muted">Article précédent</small>
+                                <h6><a href="{{ article_precedent.get_absolute_url }}" class="text-decoration-none">{{ article_precedent.titre|truncatewords:10 }}</a></h6>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if article_suivant %}
+                    <div class="col-md-6 {% if not article_precedent %}offset-md-6{% endif %}">
+                        <div class="card shadow-sm">
+                            <div class="card-body text-end">
+                                <small class="text-muted">Article suivant</small>
+                                <h6><a href="{{ article_suivant.get_absolute_url }}" class="text-decoration-none">{{ article_suivant.titre|truncatewords:10 }}</a></h6>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Similar Articles -->
+                {% if articles_similaires %}
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Articles Similaires</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            {% for article_sim in articles_similaires %}
+                            <div class="col-md-4 mb-3">
+                                {% if article_sim.image_principale %}
+                                <img src="{{ article_sim.image_principale.url }}" class="img-fluid rounded mb-2" style="height: 150px; width: 100%; object-fit: cover;" alt="{{ article_sim.titre }}">
+                                {% endif %}
+                                <h6><a href="{{ article_sim.get_absolute_url }}" class="text-decoration-none">{{ article_sim.titre|truncatewords:8 }}</a></h6>
+                                <small class="text-muted">{{ article_sim.date_publication|date:"d M Y" }}</small>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4 col-12">
+                <!-- Recent Articles -->
+                {% if articles_recents %}
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="bi-clock-history me-2"></i>Articles Récents</h5>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        {% for article_recent in articles_recents %}
+                        <a href="{{ article_recent.get_absolute_url }}" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{ article_recent.titre|truncatewords:8 }}</h6>
+                            </div>
+                            <small class="text-muted">{{ article_recent.date_publication|date:"d M Y" }}</small>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Back to Blog -->
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <a href="{% url 'blog:liste_articles' %}" class="btn btn-primary">
+                            <i class="bi-arrow-left me-2"></i>Retour au blog
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.article-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--p-color);
+}
+
+.article-content p {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+.article-content p:last-child {
+    margin-bottom: 0;
+}
+
+.article-content h2,
+.article-content h3,
+.article-content h4 {
+    color: var(--dark-color);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-medium);
+    margin: 2rem 0;
+}
+
+.article-content ul,
+.article-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+.article-content blockquote {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--p-color);
+}
+</style>
+{% endblock %}
+

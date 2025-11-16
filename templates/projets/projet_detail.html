@@ -1,0 +1,378 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ projet.titre }} - Lift and Light{% endblock %}
+{% block meta_description %}{{ projet.description|truncatewords:30 }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Style spécifique pour l'en-tête de la page galerie - Style inspiré de l'image */
+    .projet-hero-section {
+        background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
+        padding: 140px 0 100px;
+        position: relative;
+        overflow: hidden;
+        min-height: 400px;
+        margin-top: 0;
+    }
+    .projet-hero-content {
+        position: relative;
+        z-index: 2;
+    }
+    .projet-breadcrumb {
+        color: var(--primary-color);
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+        font-weight: 500;
+    }
+    .projet-breadcrumb a {
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+    .projet-breadcrumb a:hover {
+        text-decoration: underline;
+    }
+    .projet-hero-section h1 {
+        color: var(--dark-color);
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        line-height: 1.2;
+    }
+    .projet-hero-section .lead {
+        color: var(--p-color);
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        font-weight: 400;
+    }
+    .projet-cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 30px;
+        border: 2px solid var(--primary-color);
+        border-radius: 50px;
+        background: transparent;
+        color: var(--primary-color);
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    .projet-cta-button:hover {
+        background: var(--primary-color);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(142, 132, 184, 0.3);
+    }
+    .projet-cta-button .bi-bookmark {
+        font-size: 1.2rem;
+    }
+    .projet-illustration-panel {
+        background: white;
+        border-radius: 20px;
+        padding: 0;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1), 0 2px 10px rgba(0,0,0,0.05);
+        border: 1px solid rgba(0,0,0,0.05);
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        min-height: 350px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .projet-illustration-panel::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        width: 80px;
+        height: 80px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        opacity: 0.3;
+        z-index: 1;
+    }
+    .projet-illustration {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        min-height: 350px;
+    }
+    .projet-illustration img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+    
+    .gallery-item {
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+    .gallery-item:hover {
+        transform: scale(1.05);
+    }
+    .lightbox {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.95);
+        overflow: auto;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+    .lightbox.show {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    .lightbox-content {
+        max-width: 95%;
+        max-height: 95vh;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        margin: auto;
+        display: block;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        animation: zoomIn 0.3s ease-in-out;
+    }
+    .lightbox-close {
+        position: fixed;
+        top: 20px;
+        right: 30px;
+        color: #f1f1f1;
+        font-size: 50px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10000;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0,0,0,0.5);
+        border-radius: 50%;
+        transition: all 0.3s;
+    }
+    .lightbox-close:hover {
+        color: #fff;
+        background-color: rgba(0,0,0,0.8);
+        transform: scale(1.1);
+    }
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    @keyframes zoomIn {
+        from {
+            transform: scale(0.8);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+    /* Responsive pour mobile */
+    @media screen and (max-width: 768px) {
+        .projet-hero-section {
+            padding: 120px 0 60px;
+            min-height: auto;
+        }
+        .projet-hero-section h1 {
+            font-size: 2.2rem;
+        }
+        .projet-hero-section .lead {
+            font-size: 1.1rem;
+        }
+        .projet-illustration-panel {
+            min-height: 250px;
+            padding: 0;
+            margin-top: 30px;
+        }
+        .projet-cta-button {
+            padding: 10px 25px;
+            font-size: 0.9rem;
+        }
+        .lightbox-content {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 0;
+        }
+        .lightbox-close {
+            top: 10px;
+            right: 15px;
+            font-size: 40px;
+            width: 40px;
+            height: 40px;
+        }
+        .lightbox.show {
+            padding: 10px;
+        }
+    }
+    /* Empêcher le scroll du body quand le lightbox est ouvert */
+    body.lightbox-open {
+        overflow: hidden;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section spécifique pour la galerie - Style inspiré -->
+<section class="projet-hero-section">
+    <div class="container projet-hero-content">
+        <div class="row align-items-center">
+            <div class="col-lg-7 col-12 mb-4 mb-lg-0">
+                <div class="projet-breadcrumb animate-fadeInUp">
+                    <a href="{% url 'projets:liste_projets' %}">Projets</a> / {{ projet.get_categorie_display }}
+                </div>
+                <h1 class="animate-fadeInUp" style="animation-delay: 0.1s;">{{ projet.titre }}</h1>
+                <p class="lead animate-fadeInUp" style="animation-delay: 0.2s;">{{ projet.description }}</p>
+                <a href="#gallery" class="projet-cta-button animate-fadeInUp" style="animation-delay: 0.3s;">
+                    Voir la galerie
+                    <i class="bi bi-bookmark"></i>
+                </a>
+            </div>
+            <div class="col-lg-5 col-12">
+                <div class="projet-illustration-panel animate-fadeInUp" style="animation-delay: 0.4s;">
+                    <div class="projet-illustration">
+                        {% if projet.image_principale %}
+                            <img src="{{ projet.image_principale.url }}" alt="{{ projet.titre }}">
+                        {% elif projet.categorie == 'ascenseur' %}
+                            <img src="{% static 'images/ascenceur.jpg' %}" alt="{{ projet.titre }}">
+                        {% elif projet.categorie == 'climatisation' %}
+                            <img src="{% static 'images/climatisation.jpg' %}" alt="{{ projet.titre }}">
+                        {% elif projet.categorie == 'electricite' %}
+                            <img src="{% static 'images/electricite.jpg' %}" alt="{{ projet.titre }}">
+                        {% elif projet.categorie == 'groupe_electrogene' %}
+                            <img src="{% static 'images/groupe_electrogene.jpg' %}" alt="{{ projet.titre }}">
+                        {% else %}
+                            <img src="{% static 'images/ascenceur.jpg' %}" alt="{{ projet.titre }}">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Section -->
+{% if images %}
+<section class="section-padding section-bg" id="gallery">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2>Galerie du Projet</h2>
+                <p class="lead">Découvrez les détails de cette réalisation</p>
+            </div>
+        </div>
+
+        <div class="row" id="gallery">
+            {% for image in images %}
+            <div class="col-lg-4 col-md-6 col-12 mb-4">
+                <div class="gallery-item" onclick="openLightbox('{{ image.image.url }}')">
+                    <img src="{{ image.image.url }}" class="img-fluid rounded shadow" alt="{{ image.titre|default:projet.titre }}" style="width: 100%; height: 300px; object-fit: cover;">
+                    {% if image.titre %}
+                    <div class="mt-2">
+                        <small class="text-muted">{{ image.titre }}</small>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+    <span class="lightbox-close" onclick="closeLightbox()" title="Fermer (Échap)">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" src="" alt="" onclick="event.stopPropagation();">
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function openLightbox(imageSrc) {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        
+        // Charger l'image d'abord pour obtenir ses dimensions
+        const img = new Image();
+        img.onload = function() {
+            lightboxImg.src = imageSrc;
+            lightbox.classList.add('show');
+            document.body.classList.add('lightbox-open');
+        };
+        img.src = imageSrc;
+    }
+
+    function closeLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.remove('show');
+        document.body.classList.remove('lightbox-open');
+        // Réinitialiser l'image après l'animation
+        setTimeout(function() {
+            document.getElementById('lightbox-img').src = '';
+        }, 300);
+    }
+
+    // Close lightbox when clicking outside the image
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+        if (e.target === this || e.target.classList.contains('lightbox')) {
+            closeLightbox();
+        }
+    });
+
+    // Close lightbox with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' || e.keyCode === 27) {
+            closeLightbox();
+        }
+    });
+
+    // Navigation avec les flèches (optionnel)
+    let currentImageIndex = 0;
+    {% if images %}
+    const images = [{% for image in images %}'{{ image.image.url }}'{% if not forloop.last %}, {% endif %}{% endfor %}];
+
+    document.addEventListener('keydown', function(e) {
+        const lightbox = document.getElementById('lightbox');
+        if (!lightbox.classList.contains('show') || images.length === 0) return;
+
+        if (e.key === 'ArrowRight' || e.keyCode === 39) {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            document.getElementById('lightbox-img').src = images[currentImageIndex];
+        } else if (e.key === 'ArrowLeft' || e.keyCode === 37) {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            document.getElementById('lightbox-img').src = images[currentImageIndex];
+        }
+    });
+
+    // Mettre à jour l'index quand on clique sur une image
+    document.querySelectorAll('.gallery-item').forEach(function(item, index) {
+        item.addEventListener('click', function() {
+            currentImageIndex = index;
+        });
+    });
+    {% else %}
+    const images = [];
+    {% endif %}
+</script>
+{% endblock %}
+

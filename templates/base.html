@@ -1,0 +1,55 @@
+{% load static %}
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="{% block meta_description %}Lift and Light - Spécialiste en ascenseurs, climatisation, électricité et groupes électrogènes.{% endblock %}">
+        <meta name="author" content="Lift and Light">
+        <title>{% block title %}Lift and Light{% endblock %}</title>
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/jpeg" href="{% static 'images/logo.jpg' %}">
+        <link rel="shortcut icon" type="image/jpeg" href="{% static 'images/logo.jpg' %}">
+
+        <!-- CSS FILES -->        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+        
+        {% block extra_head %}{% endblock %}
+        {% block extra_css %}{% endblock %}
+    </head>
+    
+    <body>
+        <main>
+            {% include 'partials/navbar.html' %}
+
+            {% block content %}{% endblock %}
+        </main>
+
+        {% include 'partials/footer.html' %}
+
+        <!-- WhatsApp Floating Button -->
+        <a href="https://wa.me/237696926678?text=Bonjour,%20je%20souhaite%20obtenir%20plus%20d'informations%20sur%20vos%20services" 
+           class="whatsapp-float" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           aria-label="Contactez-nous sur WhatsApp">
+            <i class="bi-whatsapp"></i>
+        </a>
+
+        <!-- JAVASCRIPT FILES -->
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/click-scroll.js' %}"></script>
+        <script src="{% static 'js/custom.js' %}"></script>
+        <script src="{% static 'js/navbar-scroll.js' %}"></script>
+        {% block extra_js %}{% endblock %}
+    </body>
+</html>
+
