@@ -6,7 +6,7 @@ services:
     startCommand: python -m gunicorn liftandlight.wsgi --bind 0.0.0.0:$PORT
     envVars:
       - key: DJANGO_SETTINGS_MODULE
-        value: liftandlight.settings
+        value: liftandlight.settings_prod
       - key: SECRET_KEY
         generateValue: true
       - key: PYTHON_VERSION

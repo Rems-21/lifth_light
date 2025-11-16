@@ -39,10 +39,15 @@ import django.db.backends.sqlite3.base
 django.db.backends.sqlite3.base.check_sqlite_version = lambda: None
 
 # Static files - use WhiteNoise for Vercel
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 try:
-    INSTALLED_APPS += ['whitenoise.runserver_nostatic']
+    INSTALLED_APPS.insert(0, 'whitenoise.runserver_nostatic')
     MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    WHITENOISE_USE_FINDERS = False
+    WHITENOISE_AUTOREFRESH = DEBUG
 except Exception as e:
     # If WhiteNoise fails, continue without it
     print(f"WhiteNoise setup failed: {e}", file=sys.stderr)

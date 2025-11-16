@@ -21,10 +21,12 @@ Ce projet Django peut être déployé sur plusieurs plateformes. Voici les meill
    - Railway créera automatiquement la variable `DATABASE_URL`
 5. **Variables d'environnement** (dans Settings → Variables) :
    ```
-   DJANGO_SETTINGS_MODULE=liftandlight.settings
+   DJANGO_SETTINGS_MODULE=liftandlight.settings_prod
    SECRET_KEY=votre-cle-secrete-generee
    DEBUG=False
    ```
+   
+   **IMPORTANT** : Utilisez `settings_prod` pour la production (WhiteNoise configuré pour les fichiers statiques)
 6. **Déploiement** : Railway détecte automatiquement `Procfile` et déploie !
 
 **Générer SECRET_KEY :**

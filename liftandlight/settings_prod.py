@@ -32,8 +32,19 @@ else:
     }
 
 # Static files - WhiteNoise
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# WhiteNoise configuration
+INSTALLED_APPS.insert(0, 'whitenoise.runserver_nostatic')
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+
+# WhiteNoise storage
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# WhiteNoise settings
+WHITENOISE_USE_FINDERS = False
+WHITENOISE_AUTOREFRESH = DEBUG
 
 # Security settings
 if not DEBUG:
