@@ -4,7 +4,7 @@ set -e
 
 # Installer les dépendances si nécessaire
 if [ ! -d "venv" ]; then
-    pip install -r requirements.txt
+    python -m pip install -r requirements.txt
 fi
 
 # Collecter les fichiers statiques
