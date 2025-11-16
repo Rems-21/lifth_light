@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: liftandlight
+    env: python
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
+    startCommand: gunicorn liftandlight.wsgi
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: liftandlight.settings
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.10.9
+    database:
+      name: liftandlight-db
+      plan: free
+      databaseName: liftandlight
+      user: liftandlight
+
