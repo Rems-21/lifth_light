@@ -795,10 +795,15 @@ strong {
 .about-image {
   border-radius: var(--border-radius-medium);
   display: block;
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 1;
 }
 
 .about-text-wrap {
   position: relative;
+  overflow: visible;
 }
 
 .about-text-icon {
@@ -811,6 +816,7 @@ strong {
   text-align: center;
   color: white;
   box-shadow: 0 4px 15px rgba(165, 214, 167, 0.4);
+  flex-shrink: 0;
 }
 
 .about-text-info {
@@ -820,12 +826,14 @@ strong {
   border-radius: var(--border-radius-medium);
   border: 2px solid rgba(165, 214, 167, 0.5);
   position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: 20px;
-  padding: 35px;
+  bottom: 20px;
+  right: 20px;
+  left: 20px;
+  margin: 0;
+  padding: 25px;
   box-shadow: 0 8px 25px rgba(165, 214, 167, 0.3);
+  z-index: 2;
+  max-width: calc(100% - 40px);
 }
 
 .about-text-info h3 {
@@ -837,6 +845,53 @@ strong {
 .about-text-info p {
   color: var(--p-color) !important;
   margin-bottom: 0;
+}
+
+/* Responsive styles for about section */
+@media screen and (max-width: 991px) {
+  .about-text-info {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    left: auto;
+    margin: 20px 0 0 0;
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .about-text-wrap {
+    margin-bottom: 20px;
+  }
+
+  .about-image {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .about-text-info {
+    padding: 15px;
+    margin: 15px 0 0 0;
+  }
+
+  .about-text-icon {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 24px;
+  }
+
+  .about-text-info h3 {
+    font-size: 1.2rem;
+  }
+
+  .about-text-info p {
+    font-size: 0.9rem;
+  }
+
+  .about-image {
+    border-radius: var(--border-radius-small);
+  }
 }
 
 
