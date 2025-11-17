@@ -45,24 +45,73 @@ Render configure automatiquement via `render.yaml` :
 **Vous pouvez aussi ajouter manuellement** (dans Settings → Environment) :
 - `DEBUG=False` (pour la production)
 
-### 5. Créer la base de données PostgreSQL
+### 5. Créer et connecter la base de données PostgreSQL
+
+**Option 1 : Automatique via `render.yaml` (RECOMMANDÉ)** ✅
+
+Le fichier `render.yaml` est déjà configuré pour créer automatiquement la base de données :
+```yaml
+database:
+  name: liftandlight-db
+  plan: free
+  databaseName: liftandlight
+  user: liftandlight
+```
+
+**Render va automatiquement :**
+- ✅ Créer la base de données PostgreSQL
+- ✅ Créer la variable `DATABASE_URL` avec les identifiants
+- ✅ Connecter la base de données à votre service web
+- ✅ Injecter `DATABASE_URL` dans l'environnement de votre app
+
+**Vous n'avez rien à faire !** Render s'occupe de tout. 🎉
+
+---
+
+**Option 2 : Manuellement dans le Dashboard**
+
+Si vous préférez créer manuellement :
 
 1. Dans le dashboard Render, cliquez sur **"New +"**
 2. Sélectionnez **"PostgreSQL"**
 3. Choisissez le plan **"Free"**
 4. Nommez-la : `liftandlight-db`
-5. Render créera automatiquement `DATABASE_URL`
-
-**OU** : Render peut créer la base de données automatiquement via `render.yaml` ✅
+5. **Important** : Dans votre service web, allez dans **"Environment"** et ajoutez :
+   - Cliquez sur **"Link Database"** ou
+   - Ajoutez manuellement la variable `DATABASE_URL` (Render la crée automatiquement)
 
 ### 6. Déployer !
 
-1. Cliquez sur **"Create Web Service"**
-2. Render va :
+**Option A : Via Blueprint (RECOMMANDÉ - avec BD automatique)** ✅
+
+1. Dans Render Dashboard, cliquez sur **"New +"** → **"Blueprint"**
+2. Connectez votre repo GitHub : `Rems-21/lifth_light`
+3. Render détectera automatiquement `render.yaml`
+4. Cliquez sur **"Apply"**
+5. Render va automatiquement :
+   - ✅ Créer la base de données PostgreSQL
+   - ✅ Créer le service web
+   - ✅ Connecter la base au service
    - ✅ Installer les dépendances
    - ✅ Exécuter `collectstatic`
-   - ✅ Exécuter les migrations (automatiquement)
+   - ✅ Exécuter les migrations
    - ✅ Démarrer votre site
+
+**Option B : Via Web Service (manuel)**
+
+1. Cliquez sur **"New +"** → **"Web Service"**
+2. Connectez votre repo GitHub
+3. Configurez :
+   - **Name** : `liftandlight`
+   - **Environment** : `Python 3`
+   - **Build Command** : `python -m pip install -r requirements.txt && python manage.py collectstatic --noinput`
+   - **Start Command** : `python -m gunicorn liftandlight.wsgi --bind 0.0.0.0:$PORT`
+4. Dans **"Environment"**, ajoutez :
+   - `DJANGO_SETTINGS_MODULE` = `liftandlight.settings_prod`
+5. **Créez d'abord la base de données** (étape 5), puis **"Link Database"**
+6. Cliquez sur **"Create Web Service"**
+
+**Voir** `CONNEXION_BD_RENDER.md` pour plus de détails sur la connexion BD.
 
 ### 7. Créer le superutilisateur (AUTOMATIQUE)
 
@@ -112,6 +161,17 @@ python manage.py createsuperuser
 1. Vérifiez que la base de données PostgreSQL est créée
 2. Vérifiez que `DATABASE_URL` est bien configuré
 3. Exécutez manuellement : `python manage.py migrate`
+
+### Les données disparaissent après redéploiement ? 🔴
+
+**C'est parce que SQLite est utilisé au lieu de PostgreSQL !**
+
+1. ✅ Vérifiez que `DATABASE_URL` existe dans Environment
+2. ✅ Vérifiez que la base PostgreSQL est connectée au service
+3. ✅ Vérifiez que `DJANGO_SETTINGS_MODULE=liftandlight.settings_prod`
+4. ✅ Exécutez les migrations : `python manage.py migrate`
+
+**Voir** `PROBLEME_DONNEES_NON_PERMANENTES.md` pour le diagnostic complet.
 
 ### Erreur lors du build ?
 
