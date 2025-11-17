@@ -251,17 +251,17 @@
                 <div class="projet-illustration-panel animate-fadeInUp" style="animation-delay: 0.4s;">
                     <div class="projet-illustration">
                         {% if projet.image_principale %}
-                            <img src="{{ projet.image_principale.url }}" alt="{{ projet.titre }}">
+                            <img src="{{ projet.image_principale.url }}" alt="{{ projet.titre }}" loading="lazy">
                         {% elif projet.categorie == 'ascenseur' %}
-                            <img src="{% static 'images/ascenceur.jpg' %}" alt="{{ projet.titre }}">
+                            <img src="{% static 'images/ascenceur.jpg' %}" alt="{{ projet.titre }}" loading="lazy">
                         {% elif projet.categorie == 'climatisation' %}
-                            <img src="{% static 'images/climatisation.jpg' %}" alt="{{ projet.titre }}">
+                            <img src="{% static 'images/climatisation.jpg' %}" alt="{{ projet.titre }}" loading="lazy">
                         {% elif projet.categorie == 'electricite' %}
-                            <img src="{% static 'images/electricite.jpg' %}" alt="{{ projet.titre }}">
+                            <img src="{% static 'images/electricite.jpg' %}" alt="{{ projet.titre }}" loading="lazy">
                         {% elif projet.categorie == 'groupe_electrogene' %}
-                            <img src="{% static 'images/groupe_electrogene.jpg' %}" alt="{{ projet.titre }}">
+                            <img src="{% static 'images/groupe_electrogene.jpg' %}" alt="{{ projet.titre }}" loading="lazy">
                         {% else %}
-                            <img src="{% static 'images/ascenceur.jpg' %}" alt="{{ projet.titre }}">
+                            <img src="{% static 'images/ascenceur.jpg' %}" alt="{{ projet.titre }}" loading="lazy">
                         {% endif %}
                     </div>
                 </div>
@@ -285,7 +285,7 @@
             {% for image in images %}
             <div class="col-lg-4 col-md-6 col-12 mb-4">
                 <div class="gallery-item" onclick="openLightbox('{{ image.image.url }}')">
-                    <img src="{{ image.image.url }}" class="img-fluid rounded shadow" alt="{{ image.titre|default:projet.titre }}" style="width: 100%; height: 300px; object-fit: cover;">
+                    <img src="{{ image.image.url }}" class="img-fluid rounded shadow" alt="{{ image.titre|default:projet.titre }}" style="width: 100%; height: 300px; object-fit: cover;" loading="lazy">
                     {% if image.titre %}
                     <div class="mt-2">
                         <small class="text-muted">{{ image.titre }}</small>

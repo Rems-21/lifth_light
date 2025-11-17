@@ -50,17 +50,17 @@
             <div class="col-lg-4 col-md-6 col-12 mb-4">
                 <div class="card h-100 shadow hover-lift animate-fadeInUp">
                     {% if projet.image_principale %}
-                        <img src="{{ projet.image_principale.url }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ projet.titre }}">
+                        <img src="{{ projet.image_principale.url }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ projet.titre }}" loading="lazy">
                     {% elif projet.categorie == 'ascenseur' %}
-                        <img src="{% static 'images/ascenceur.jpg' %}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ projet.titre }}">
+                        <img src="{% static 'images/ascenceur.jpg' %}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ projet.titre }}" loading="lazy">
                     {% elif projet.categorie == 'climatisation' %}
-                        <img src="{% static 'images/climatisation.jpg' %}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ projet.titre }}">
+                        <img src="{% static 'images/climatisation.jpg' %}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ projet.titre }}" loading="lazy">
                     {% elif projet.categorie == 'electricite' %}
-                        <img src="{% static 'images/electricite.jpg' %}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ projet.titre }}">
+                        <img src="{% static 'images/electricite.jpg' %}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ projet.titre }}" loading="lazy">
                     {% elif projet.categorie == 'groupe_electrogene' %}
-                        <img src="{% static 'images/groupe_electrogene.jpg' %}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ projet.titre }}">
+                        <img src="{% static 'images/groupe_electrogene.jpg' %}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ projet.titre }}" loading="lazy">
                     {% else %}
-                        <img src="{% static 'images/ascenceur.jpg' %}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ projet.titre }}">
+                        <img src="{% static 'images/ascenceur.jpg' %}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ projet.titre }}" loading="lazy">
                     {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ projet.titre }}</h5>

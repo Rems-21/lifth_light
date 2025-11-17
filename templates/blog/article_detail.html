@@ -296,7 +296,7 @@
 
                         <!-- Article Image -->
                         {% if article.image_principale %}
-                        <img src="{{ article.image_principale.url }}" class="img-fluid rounded mb-4" alt="{{ article.titre }}" itemprop="image">
+                        <img src="{{ article.image_principale.url }}" class="img-fluid rounded mb-4" alt="{{ article.titre }}" itemprop="image" loading="eager">
                         {% endif %}
 
                         <!-- Article Content -->
@@ -362,7 +362,7 @@
                             {% for article_sim in articles_similaires %}
                             <div class="col-md-4 mb-3">
                                 {% if article_sim.image_principale %}
-                                <img src="{{ article_sim.image_principale.url }}" class="img-fluid rounded mb-2" style="height: 150px; width: 100%; object-fit: cover;" alt="{{ article_sim.titre }}">
+                                <img src="{{ article_sim.image_principale.url }}" class="img-fluid rounded mb-2" style="height: 150px; width: 100%; object-fit: cover;" alt="{{ article_sim.titre }}" loading="lazy">
                                 {% endif %}
                                 <h6><a href="{{ article_sim.get_absolute_url }}" class="text-decoration-none">{{ article_sim.titre|truncatewords:8 }}</a></h6>
                                 <small class="text-muted">{{ article_sim.date_publication|date:"d M Y" }}</small>

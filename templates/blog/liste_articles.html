@@ -244,7 +244,7 @@
                     <div class="col-12 mb-4">
                         <article class="card shadow-sm hover-lift h-100" itemscope itemtype="https://schema.org/BlogPosting">
                             {% if article.image_principale %}
-                            <img src="{{ article.image_principale.url }}" class="card-img-top" style="height: 300px; object-fit: cover;" alt="{{ article.titre }}" itemprop="image">
+                            <img src="{{ article.image_principale.url }}" class="card-img-top" style="height: 300px; object-fit: cover;" alt="{{ article.titre }}" itemprop="image" loading="lazy">
                             {% endif %}
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
