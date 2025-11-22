@@ -5,6 +5,7 @@
 {% block meta_description %}Portfolio des projets Lift and Light - Découvrez nos réalisations en ascenseurs, climatisation, électricité et groupes électrogènes.{% endblock %}
 
 {% block content %}
+
 <!-- Hero Section -->
 <section class="hero-section">
     <div class="section-overlay"></div>
@@ -16,9 +17,15 @@
             </div>
         </div>
     </div>
-    <div class="image-wrap">
-        <img src="{% static 'images/ascenceur.jpg' %}" class="custom-image" alt="Projets Lift and Light">
+    <div class="video-wrap">
+        <video autoplay="" loop="" muted="" class="custom-video" poster="">
+            <source src="{% static 'video/vid.mp4' %}" type="video/mp4">
+            Votre navigateur ne supporte pas la balise vidéo.
+        </video>
     </div>
+    <!-- <div class="image-wrap">
+        <img src="{% static 'images/ascenceur.jpg' %}" class="custom-image" alt="Projets Lift and Light">
+    </div> -->
 </section>
 
 <!-- Portfolio Filter -->
